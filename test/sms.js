@@ -13,8 +13,7 @@ var app = require('../server');
 
 // test data
 var smsObject = { 
-  message_body: "Testing twilio.com",
-  twilio_response: "Twilio response"
+  message: "Testing twilio.com"
 };
 var responseId = 1;
 
@@ -40,7 +39,7 @@ describe('Model testing with Postgresql.', function () {
         .send(smsObject)
         .expect(200)
         .end(function(err, res) {
-          console.log('err:%s res:%s', err, res);
+          console.log('err:%s res:%s', err, res.body.data);
           if(! err)
             done();
         });
@@ -52,7 +51,7 @@ describe('Model testing with Postgresql.', function () {
         .get('/api/v1/sms/' + responseId)
         .expect(200)
         .end(function(err, res) {
-          console.log('err:%s res:%s', err, res)
+          console.log('err:%s res:%s', err, res.body.data)
           if(! err)
             done();
         });

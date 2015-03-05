@@ -4,24 +4,45 @@ module.exports = function(models) {
   return {
 
     get: function(req, res) {
-      var id = req.params.id;
-      console.log('[sms.get] id:'+ id)
 
+      var id = req.params.id;
+      
       if(! id)
         return res.status(500).json(500, {err: 'empty id param'});
-      
-      res.status(200).json({ message: 'ok'})
+
+      console.log('[sms.get] id: %s', id)
+
+      // find by id
+      models.Sms.find(id)
+        .then(function (data) {
+          console.log('[sms.get] data: %s', data)
+          return res.status(200).json({ data: JSON.stringify(data) });
+        },
+        function (err) {
+            console.error(err.message, err);
+            return res.status(500).json({ err: 'No data available' })
+        });        
     },
 
     send: function(req, res) {
-      console.log('[sms.send]')
 
-      if(! req.body)
-        return res.status(500).json(500, {err: 'empty message params'});
+      message = req.body.message;
 
-      //Model.create
+      console.log('[sms.send] params: %s', message);
 
-      return res.status(200).json({ message: 'ok'})
+      if(! message)
+        return res.status(500).json(500, {err: 'empty message param'});
+
+      // save object
+      models.Sms.create({ message: message })
+        .then(function (data) {
+          console.log('[sms.get] data: %s', data)
+          return res.status(200).json({ data: JSON.stringify(data) });
+        },
+        function (err) {
+            console.error('[sms.get] err: %s', err.message);
+            return res.status(500).json({ err: 'No data available' })
+        });   
     }
 
   }

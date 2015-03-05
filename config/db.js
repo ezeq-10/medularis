@@ -16,7 +16,9 @@ var sequelize = new Sequelize(
   config.password,
   {
     dialect: 'postgres',
-    port: config.port
+    port: config.port,
+    sync: { force: true },
+    omitNull: true
   }
 );
 

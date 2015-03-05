@@ -27,12 +27,8 @@ var sequelize = require('./config/db');
 // load models
 var models = require('./api/models')(sequelize);
 
-// sync the models to the database
-sequelize.sync();
-
 // load controllers
 var controllers = require('./api/controllers')(app, models);
-
 
 // routing
 var router = express.Router();
