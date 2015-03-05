@@ -1,18 +1,15 @@
-// test/sms.js
 'use_strict';
 
 // force the test environment to 'test'
 process.env.NODE_ENV = 'test';
 
 // load modules
-var supertest = require('supertest'),
-  expect = require('chai').expect,
-  util = require('util');
-
+var supertest = require('supertest');
+var expect = require('chai').expect;
+var util = require('util');
 
 // application & model
-var app = require('../server').app
-
+var app = require('../server');
 
 // test data
 var smsObject = { 
@@ -43,7 +40,7 @@ describe('Model testing with Postgresql.', function () {
         .send(smsObject)
         .expect(200)
         .end(function(err, res) {
-          //console.log('err:%s res:%s', err, res);
+          console.log('err:%s res:%s', err, res);
           if(! err)
             done();
         });
@@ -55,7 +52,7 @@ describe('Model testing with Postgresql.', function () {
         .get('/api/v1/sms/' + responseId)
         .expect(200)
         .end(function(err, res) {
-          //console.log('err:%s res:%s', err, res)
+          console.log('err:%s res:%s', err, res)
           if(! err)
             done();
         });

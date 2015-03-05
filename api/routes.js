@@ -1,12 +1,8 @@
-'use_strict';
+module.exports = function(app, router, controllers) {
+  'use strict';
 
-module.exports = function(app, routes) {
+  router.post('/api/v1/sms', controllers.sms.send);
+  router.get('/api/v1/sms/:id', controllers.sms.get);
 
-    
-    var sms = require('./controllers/sms');
-
-    routes.post('/api/v1/sms', sms.send_sms);
-    routes.get('/api/v1/sms/:id', sms.get_sms);
-
-    app.use(routes)
+  app.use(router)
 };

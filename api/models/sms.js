@@ -1,26 +1,28 @@
-'use_strict';
+module.exports = function(sequelize) {
+  'use_strict';
 
-module.exports = function(sequelize, DataTypes) {
+  // to get datatypes
+  var DataType = require('sequelize');
 
-  return sequelize.define('sent_sms', {
+  var Sms = sequelize.define('sent_sms', {
     id: {
-      type: sequelize.INTEGER,
+      type: DataType.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
-    message_body: {
-      type: sequelize.TEXT,
+    message: {
+      type: DataType.TEXT,
       allowNull: false
     },
     twilio_response: {
-      type: sequelize.TEXT,
+      type: DataType.TEXT,
       allowNull: false
     }
   },
-  instanceMethods: {
+  {
+    timestamps: false,
+  });
 
-
-  } 
-  );
+  return Sms;
 
 };

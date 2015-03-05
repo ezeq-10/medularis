@@ -16,20 +16,14 @@ var sequelize = new Sequelize(
   config.password,
   {
     dialect: 'postgres',
-    port: config.port,
-    define: {
-      timestamps: false
-    }
+    port: config.port
   }
 );
-
-var DataTypes = require("sequelize");
- 
 
 sequelize
   .authenticate()
   .complete(function(err) {
-    if (!!err) {
+    if (err) {
       console.log('Unable to connect to the database:', err)
     } else {
       console.log('Connection has been established successfully.')

@@ -1,26 +1,29 @@
-'use_strict';
-var request = require('request'),
-    util = require('util');
+module.exports = function(models) {
+  'use_strict';
 
-// model
-//var Model = require('../models/sms');
+  return {
 
-exports.send_sms = function (req, res) {
+    get: function(req, res) {
+      var id = req.params.id;
+      console.log('[sms.get] id:'+ id)
 
-    console.log('post method ok')
+      if(! id)
+        return res.status(500).json(500, {err: 'empty id param'});
+      
+      res.status(200).json({ message: 'ok'})
+    },
 
-    if(! req.body)
-      return res.status(500).json(500, {err: 'no data'});
+    send: function(req, res) {
+      console.log('[sms.send]')
 
-    //Model.create
+      if(! req.body)
+        return res.status(500).json(500, {err: 'empty message params'});
 
-    return res.status(200).json({ message: 'ok'})
-};
+      //Model.create
 
-exports.get_sms = function (req, res) {
+      return res.status(200).json({ message: 'ok'})
+    }
 
-    var id = req.params.id;
-    console.log('[get_sms] id:'+ id)
-    res.status(200).json({ message: 'ok'})
+  }
 
 };
