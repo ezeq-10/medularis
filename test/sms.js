@@ -43,8 +43,9 @@ describe('Model testing with Postgresql.', function () {
         .send(smsObject)
         .expect(200)
         .end(function(err, res) {
-          console.log('err:%s res:%s', err, res);
-          done();
+          //console.log('err:%s res:%s', err, res);
+          if(! err)
+            done();
         });
     });
 
@@ -54,8 +55,9 @@ describe('Model testing with Postgresql.', function () {
         .get('/api/v1/sms/' + responseId)
         .expect(200)
         .end(function(err, res) {
-          console.log('err:%s res:%s', err, res)
-          done();
+          //console.log('err:%s res:%s', err, res)
+          if(! err)
+            done();
         });
     });
 

@@ -1,18 +1,6 @@
 'use_strict'
 
-// IMPORT MODELS
-// =============================================================================
 var Sequelize = require('sequelize');
-
-
-// db config
-/*
-var pg_dbname = process.env.PGSQL_DBNAME || 'medularis_sms',
-  pg_user = process.env.PGSQL_DBUSER || 'postgres',
-  pg_passwd = process.env.PGSQL_DBPSWD,
-  pg_host = process.env.PGSQL_DBHOST || '127.0.0.1',
-  pg_port = process.env.PGSQL_DBPORT || 5432;
-*/
 
 var config = {
   database: 'medularis_sms',
@@ -28,8 +16,7 @@ var sequelize = new Sequelize(
   config.password,
   {
     dialect: 'postgres',
-    port: config.port
-    logging: console.log,
+    port: config.port,
     define: {
       timestamps: false
     }
@@ -38,7 +25,7 @@ var sequelize = new Sequelize(
 
 var DataTypes = require("sequelize");
  
-/*
+
 sequelize
   .authenticate()
   .complete(function(err) {
@@ -48,5 +35,5 @@ sequelize
       console.log('Connection has been established successfully.')
     }
   })
-*/
+
 module.exports = sequelize;
