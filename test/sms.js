@@ -40,8 +40,11 @@ describe('Model testing with Postgresql.', function () {
         .expect(200)
         .end(function(err, res) {
           console.log('err:%s res:%s', err, res.body.data);
-          if(! err)
+          if(! err) {
+            // get last inserted id
+            responseId = res.body.data;
             done();
+          }            
         });
     });
 

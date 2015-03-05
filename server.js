@@ -5,6 +5,7 @@
  */
 
 var express = require('express');
+var request = require('request');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
@@ -24,11 +25,14 @@ app.use(methodOverride());
 // db config
 var sequelize = require('./config/db');
 
+// twilio config
+var twilio = require('./config/twilio');
+
 // load models
 var models = require('./api/models')(sequelize);
 
 // load controllers
-var controllers = require('./api/controllers')(app, models);
+var controllers = require('./api/controllers')(app, models, request, twilio);
 
 // routing
 var router = express.Router();

@@ -15,7 +15,7 @@ module.exports = function(sequelize) {
       allowNull: false
     },
     twilio_response: {
-      type: DataType.TEXT
+      type: DataType.JSON
     }
   },{
     timestamps: false,
