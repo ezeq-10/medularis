@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Testapp For medularis
 =====================
 
@@ -30,3 +31,7 @@ export PGSQL_DBPSWD=''
 ```
 
 ## Reference doc
+=======
+# medularis
+Node.js API with Postgres
+>>>>>>> 531abe70a218967aa4165832b79ce0727e1b2273
